@@ -16,7 +16,7 @@
               <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{Auth::user()->name}}</a>
               <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                   <li><a class="dropdown-item" href="{{url('/profile')}}">Profile</a></li>
-                  <li><a class="dropdown-item" href="{{route('password.request')}}">Change Password</a></li>
+                  <li><a class="dropdown-item" href="{{route('password.reset.logged')}}">Change Password</a></li>
                   <li><hr class="dropdown-divider" /></li>
                   <li><a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();

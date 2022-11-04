@@ -62,6 +62,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
 Route::post('/update-profile', [App\Http\Controllers\HomeController::class, 'update_profile'])->name('update_profile');
 Route::get('/test', [App\Http\Controllers\HomeController::class, 'xlsx'])->name('test');
+Route::get('/password-reset', [App\Http\Controllers\HomeController::class, 'password_reset'])->name('password.reset.logged');
 });
 
 
