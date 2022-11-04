@@ -87,7 +87,7 @@ class DoctorController extends Controller
     {
         $departments=Department::orderBy('id','desc')->get();
         $doctor=Doctor::where('id',$id)->first();
-        $doctor->password='';
+        //$doctor->password='';
         $doctor->user->password='';
         return view('pages.doctor.doctor_view',['doctor'=>$doctor,'departments'=>$departments]);
 

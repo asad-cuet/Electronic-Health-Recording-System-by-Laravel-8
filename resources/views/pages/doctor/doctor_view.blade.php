@@ -13,6 +13,7 @@
               <div class="col">
               <b>Department Name: </b>{{$doctor->department->name}} <br>
               <b>Doctor Email: </b>{{$doctor->user->email}}
+              <b>Password: </b>{{$doctor->password}}
               </div>
         </div>
         <br>

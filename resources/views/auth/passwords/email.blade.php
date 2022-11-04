@@ -4,7 +4,6 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <p>Your Email must be valid email. If not valid,update your email using a valid email.</p>
 
             <div class="card">
                 <div class="card-header">{{ __('Reset Password') }}</div>
