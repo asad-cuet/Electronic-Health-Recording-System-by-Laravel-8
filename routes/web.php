@@ -20,13 +20,13 @@ Route::get('/', function () {
 
 //when there is 0 user in database, this url will create a user. It can be use just for one timr
 Route::get('/create', function () {
-  if(App\Models\User::count()==0)
+  if(App\Models\User::count())
   {
     $pass=12345678;
     $data=[
       'name'=>'Administration',
       'email'=>'ad@gmail.com',
-      'rolse_as'=>'administration',
+      'role_as'=>'administration',
       'password'=>Hash::make($pass)
     ];
     App\Models\User::create($data);
