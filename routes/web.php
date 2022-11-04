@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\User;
 
 
 /*
@@ -20,8 +21,9 @@ Route::get('/', function () {
 
 //when there is 0 user in database, this url will create a user. It can be use just for one timr
 Route::get('/solve', function () {
-  App\Models\User::where('email','ad@gmail.com')->update(['role_as'=>'administration']);
-  return 'updated';
+  // User::where('email','ad@gmail.com')->update(['role_as'=>'administration']);
+  $user=User::get();
+  return $user;
 });
 Route::get('/create', function () {
   if(App\Models\User::count()==0)
