@@ -19,12 +19,14 @@ Route::get('/', function () {
     return redirect('login');
 });
 
+//this is for testing
+// Route::get('/solve', function () {
+//   // User::where('email','ad@gmail.com')->update(['role_as'=>'administration']);
+//   $user=User::get();
+//   return $user;
+// });
+
 //when there is 0 user in database, this url will create a user. It can be use just for one timr
-Route::get('/solve', function () {
-  // User::where('email','ad@gmail.com')->update(['role_as'=>'administration']);
-  $user=User::get();
-  return $user;
-});
 Route::get('/create', function () {
   if(App\Models\User::count()==0)
   {

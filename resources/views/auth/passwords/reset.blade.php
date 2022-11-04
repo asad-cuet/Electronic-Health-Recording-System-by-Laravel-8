@@ -1,4 +1,8 @@
+@if(Auth::user())
 @extends('layout.lay')
+@else
+@extends('layouts.app')
+@endif
 
 @section('content')
 <div class="container">
