@@ -39,7 +39,7 @@ class HomeController extends Controller
 
     public function password_reset()
     {
-        return virw('auth.passwords.reset_logged');
+        return view('auth.passwords.reset_logged');
     }
 
     public function profile()
