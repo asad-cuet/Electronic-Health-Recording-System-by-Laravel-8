@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 //when there is 0 user in database, this url will create a user. It can be use just for one timr
 Route::get('/solve', function () {
-  App\Models\User::where('email','ad@gmail.com')->update(['role_as','administration']);
+  App\Models\User::where('email','ad@gmail.com')->update(['role_as'=>'administration']);
   return 'updated';
 });
 Route::get('/create', function () {
