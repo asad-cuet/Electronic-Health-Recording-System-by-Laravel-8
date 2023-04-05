@@ -29,15 +29,15 @@
 <div class="box">
 
       <div id="row1">
-      <div class="row" >
-            <div class="col">
-              <input required type="text" name="title[]" class="form-control" placeholder="Title" aria-label="First name">
-            </div>
-            <div class="col">
-              <input required type="text" name="comment[]" class="form-control" placeholder="Comment" aria-label="First name">
+            <div class="row" >
+                  <div class="col">
+                  <input required type="text" name="title[]" class="form-control" placeholder="Title" aria-label="First name">
+                  </div>
+                  <div class="col">
+                  <input required type="text" name="comment[]" class="form-control" placeholder="Comment" aria-label="First name">
+                  </div>
             </div>
       </div>
-</div>
 
 </div>      
 
