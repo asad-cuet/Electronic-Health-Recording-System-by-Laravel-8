@@ -32,13 +32,13 @@ Route::get('/create', function () {
   {
     $pass=12345678;
     $data=[
-      'name'=>'Administration',
-      'email'=>'ad@gmail.com',
+      'name'=>'Administrator',
+      'email'=>'administrator@gmail.com',
       'role_as'=>'administration',
       'password'=>Hash::make($pass)
     ];
     App\Models\User::create($data);
-    return "A user created. Email: ad@gmail.com and password: ".$pass.".<br>This way can be use only One time at the begining of the website.";
+    return "A user created. Email: ".$data['email']." and password: ".$pass.".<br>This way can be use only One time at the begining of the website.";
   }
   else
   {
