@@ -1,0 +1,7 @@
+id,pre_name,fname,lname,full_name,gender,age,height,weight,address,phone,health_insurance,guardian_name,guardian_phone,relationship,history_id,is_consulted,is_cleared,created_at,updated_at
+1,Mr,Asadul,Islam,"Mr Asadul Islam",male,23,5.8,60,shoronika,01781856861,0,"Fatematuj Johra",01718292489,Mother,634c1819f0e53,1,0,2022-10-16T14:41:29.000000Z,2022-10-26T15:35:56.000000Z
+2,Mr,Rahat,Mubassir,"Mr Rahat Mubassir",male,21,5.10,75,shoronika,01781856861,0,Asad,01781856861,Brother,634c196fc4114,1,1,2022-10-16T14:47:11.000000Z,2022-10-26T15:35:56.000000Z
+3,Mr,Shanto,Rahman,"Mr Shanto Rahman",male,22,5.10,75,shoronika,01781856861,0,Asad,01781856861,Brother,634c199467bfe,1,0,2022-10-16T14:47:48.000000Z,2022-10-26T15:35:56.000000Z
+4,Mr,Mehedi,Rahman,"Mr Mehedi Rahman",male,22,5.8,60,shoronika,01781856861,0,Asad,01781856861,Brother,634c19c72891b,1,0,2022-10-16T14:48:39.000000Z,2022-10-26T15:35:56.000000Z
+5,Mr,Shanto,Islam,"Mr Shanto Islam",male,23,5.8,60,shoronika,01781856861,0,Asad,01781856861,Brother,634d9eb9e8a30,1,0,2022-10-17T18:28:09.000000Z,2022-10-26T15:35:56.000000Z
+6,Mr,Ahammed,Khan,"Mr Ahammed Khan",male,25,5.5,70,shoronika,01781856861,0,Md,5654435,Brother,6359611c069fe,0,0,2022-10-26T16:32:28.000000Z,2022-10-26T16:32:28.000000Z
