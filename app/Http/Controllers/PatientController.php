@@ -10,6 +10,7 @@ use App\Models\consultation;
 use App\Models\Exam;
 use App\Models\Medication;
 use Illuminate\Support\Collection;
+use Log;
 
 class PatientController extends Controller
 {
@@ -55,7 +56,10 @@ class PatientController extends Controller
         'relationship'=>$request->input('relationship'),
         'history_id'=>$history_id
        ];
-        Patient::create($data);                    
+        Patient::create($data);      
+
+        $this->sendSSLSMS($request->input('phone'), "Welcome ".$request->input('pre_name')." ".$request->input('fname').". You can see your details here:".route('patient_status',$history_id));
+
         return redirect(route('patients'))->with('status','Patient Added Successfully');
     }
     
@@ -162,4 +166,100 @@ class PatientController extends Controller
         ];
         return view('pages.patient.patient_status',$object);
     }
+
+
+    function singleSms($msisdn, $messageBody, $csmsId)
+    {
+        // $msisdn -> phone
+        // $messageBody -> message
+        // $csmsId -> an unique id
+
+        $params = [
+            "api_token" => env('SSL_SMS_API_TOKEN'),
+            "sid" => env('SSL_SMS_SID'),
+            "msisdn" => $msisdn,
+            "sms" => $messageBody,
+            "csms_id" => $csmsId
+        ];
+
+        Log::channel('sms')->info("SMS Request phone: ".$msisdn);
+
+        // https://smsplus.sslwireless.com/api/v3/send-sms
+        $url = trim('https://smsplus.sslwireless.com', '/')."/api/v3/send-sms";
+        $params = json_encode($params);
+
+        return $this->callApi($url, $params);
+    }
+
+
+    function callApi($url, $params)
+    {
+        $ch = curl_init(); // Initialize cURL
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json',
+            'Content-Length: ' . strlen($params),
+            'accept:application/json'
+        ));
+
+        $response = curl_exec($ch);
+
+        curl_close($ch);
+
+        Log::channel('sms')->info("Sms Response: ".$response);
+
+        return $response;
+    }
+
+
+    function sendSSLSMS($phone, $text)
+    {
+
+        if(gettype($phone)!='string')
+        {
+            $phone = (string) $phone;
+        }
+        $msisdn=$phone;
+        $messageBody=$text;
+        $csmsId=uniqid();
+
+        // return 1;
+        $data=json_decode($this->singleSms($msisdn, $messageBody, $csmsId));
+
+        return $data;
+
+
+        //Response Demo: {"status":"SUCCESS","status_code":200,"error_message":"","smsinfo":[{"sms_status":"SUCCESS","status_message":"Success","msisdn":"8801781856861","sms_type":"EN","sms_body":"This is a test message","csms_id":"644f9ad337562","reference_id":"644f9ad37a867181381"}]}
+
+    }
+
+    function sendApiSMS(Request $request)
+    {
+        Log::channel('sms')->info("Sms request: ".json_encode($request->all()));
+        if($request->api_key==12345 || $request->api_key=='12345')
+        {
+            return $this->sendSSLSMS($request->phone,$request->message);
+        }
+    }
+
+
+    // function sendApiSMS(Request $request)
+    // {
+    //     Log::channel('sms')->info("Sms content: ".$request->getContent());
+    //     Log::channel('sms')->info("Sms content type: ".gettype($request->getContent()));
+    //     Log::channel('sms')->info("Sms request: ".json_encode($request->all()));
+
+    //     $body=json_decode($request->getContent(),1);
+    //     // Log::channel('sms')->info("body type: ".gettype($body));
+
+    //     if($body['api_key']==12345 || $body['api_key']=='12345')
+    //     {
+    //         return $this->sendSSLSMS($body['phone'],$body['message']);
+    //     }
+    // }
 }
